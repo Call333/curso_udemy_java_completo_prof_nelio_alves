@@ -21,8 +21,7 @@ public class ReservaHotel {
     }  
 
     public Integer duracao(){
-        Integer duracao = dataEntrada.getDay();
-        return duracao;
+        return 1;
     }
 
     public void atualizarDatas(Date entrada, Date saida){
