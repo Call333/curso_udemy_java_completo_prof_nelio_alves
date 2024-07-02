@@ -21,7 +21,7 @@ public class DemoTransacaoApp {
 
             int rows1 = st.executeUpdate("UPDATE seller SET BaseSalary = 2090 WHERE departmentId = 1");
 
-            // Codigo para lançar execeção de teste
+            // Codigo para lançar exececao de teste
             // int x = 2;
 			// if (x < 2) {
 			// 	throw new SQLException("Fake error");
