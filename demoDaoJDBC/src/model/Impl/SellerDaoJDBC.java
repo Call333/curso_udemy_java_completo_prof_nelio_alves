@@ -56,19 +56,11 @@ public class SellerDaoJDBC implements SellerDao{
             rs = st.executeQuery();
             while(rs.next()){
 
-                Department dep = new Department();
-                dep.setId(rs.getInt("DepartmentId"));
-                dep.setName(rs.getString("DepName"));
+                Department department = initeDepartment(rs);
 
-                Seller slr = new Seller();
-                slr.setId(rs.getInt("Id"));
-                slr.setName(rs.getString("Name"));
-                slr.setEmail(rs.getString("Email"));
-                slr.setBirthDate(rs.getDate("BirthDate"));
-                slr.setBaseSalary(rs.getDouble("BaseSalary"));
-                slr.setDepartment(dep);
+                Seller seller = initeSeller(rs, department);1
 
-                return slr;
+                return seller;
             }
             return null;
         }
@@ -87,4 +79,22 @@ public class SellerDaoJDBC implements SellerDao{
         throw new UnsupportedOperationException("Unimplemented method 'findAll'");
     }
     
+    public Department initeDepartment(ResultSet rs) throws SQLException{
+        Department dep = new Department();
+        dep.setId(rs.getInt("DepartmentId"));
+        dep.setName(rs.getString("DepName"));
+        return dep;
+    }
+
+    public Seller initeSeller(ResultSet rs, Department dep) throws SQLException {
+        Seller slr = new Seller();
+        slr.setId(rs.getInt("Id"));
+        slr.setName(rs.getString("Name"));
+        slr.setEmail(rs.getString("Email"));
+        slr.setBirthDate(rs.getDate("BirthDate"));
+        slr.setBaseSalary(rs.getDouble("BaseSalary"));
+        slr.setDepartment(dep);
+        return slr;
+    }
+
 }

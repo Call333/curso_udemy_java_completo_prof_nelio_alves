@@ -16,7 +16,7 @@ public class App {
         // System.out.println(slr);
 
         SellerDao sellerDao = DaoFactory.createSellerDao(); 
-        Seller seller = sellerDao.findById(7);
+        Seller seller = sellerDao.findById(5);
         System.out.println(seller);
     }
 }
