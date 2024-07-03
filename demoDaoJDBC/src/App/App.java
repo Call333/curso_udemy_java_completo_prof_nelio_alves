@@ -10,6 +10,7 @@ import demoDaoJDBC.src.model.entities.Seller;
 
 public class App {
     public static void main(String[] args) {
+        
         // Department obj = new Department(1, "Eletronics");
         // System.out.println(obj);
 
@@ -23,11 +24,25 @@ public class App {
         System.out.println(seller);
 
         System.out.println("\n ---> TEST 2: findByDepartment() <--- ");
-        Department obj = new Department(1, null);
+        Department obj = new Department(4, null);
         List<Seller> listSellers = sellerDao.findByDepartment(obj);
         for (Seller slr : listSellers) {
             System.out.println(slr);
         }
 
+        System.out.println("\n ---> TEST 3: findAll() <--- ");
+        List<Seller> listSellers2 = sellerDao.findAll();
+        for (Seller slr : listSellers2) {
+            System.out.println(slr);
+        }
+
+        System.out.println("\n ---> TEST 4: Seller Insert <--- ");
+        Seller newSeller = new Seller(null, "Ycaro", "yro@gmail.com", new Date(), 2300.0, new Department(4, null));
+        sellerDao.insert(newSeller);
+        System.out.println("Inserted");
+        List<Seller> listNewSellers = sellerDao.findByDepartment(obj);
+        for (Seller slr : listNewSellers) {
+            System.out.println(slr);
+        }
     }
 }
