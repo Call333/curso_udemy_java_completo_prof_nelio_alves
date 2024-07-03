@@ -1,4 +1,4 @@
-package entities;
+package Classes.entities;
 
 public class Students {
     private int userNumber;

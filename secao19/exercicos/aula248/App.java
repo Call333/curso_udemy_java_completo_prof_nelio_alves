@@ -3,7 +3,7 @@ import java.util.LinkedHashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-import entities.Students;
+import Classes.entities.Students;
 
 public class App {
     public static void main(String[] args) {
