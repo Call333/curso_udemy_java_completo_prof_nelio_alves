@@ -36,13 +36,20 @@ public class App {
             System.out.println(slr);
         }
 
-        System.out.println("\n ---> TEST 4: Seller Insert <--- ");
-        Seller newSeller = new Seller(null, "Ycaro", "yro@gmail.com", new Date(), 2300.0, new Department(4, null));
-        sellerDao.insert(newSeller);
-        System.out.println("Inserted");
-        List<Seller> listNewSellers = sellerDao.findByDepartment(obj);
-        for (Seller slr : listNewSellers) {
-            System.out.println(slr);
-        }
+        // System.out.println("\n ---> TEST 4: Seller Insert <--- ");
+        // Seller newSeller = new Seller(null, "Ycaro", "yro@gmail.com", new Date(), 2300.0, new Department(4, null));
+        // sellerDao.insert(newSeller);
+        // System.out.println("Inserted");
+        // List<Seller> listNewSellers = sellerDao.findByDepartment(obj);
+        // for (Seller slr : listNewSellers) {
+        //     System.out.println(slr);
+        // }
+
+        System.out.println("\n ---> TEST 5: update() <--- ");
+
+        Seller seller4 = sellerDao.findById(15);
+        seller4.setName("Jack");
+        seller4.setEmail("jack@gmail.com");
+        sellerDao.update(seller4);
     }
 }
