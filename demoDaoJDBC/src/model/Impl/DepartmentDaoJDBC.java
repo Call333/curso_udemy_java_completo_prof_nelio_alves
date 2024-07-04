@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import demoDaoJDBC.src.db.DbException;
@@ -76,20 +77,79 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 
     @Override
     public void deleteById(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
+        PreparedStatement st = null;
+
+        try {
+            st = conn.prepareStatement(
+                "DELETE FROM department "
+                + "WHERE Id = (?)"
+                );
+
+            st.setInt(1, id);
+
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeStatement(st);
+        }
     }
 
     @Override
     public Department findById(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try {
+            st = conn.prepareStatement(
+                "SELECT Id,Name FROM department "
+                + "WHERE Id = (?)"
+                );
+            
+            st.setInt(1, id);
+            rs = st.executeQuery();
+
+            if(rs.next()){
+                Department department = new Department();
+                department.setId(rs.getInt("Id"));
+                department.setName(rs.getString("Name"));
+                return department;
+            }
+            return null;
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeResultSet(rs);
+            DB.closeStatement(st);
+        }
     }
 
     @Override
     public List<Department> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try {
+            st = conn.prepareStatement(
+                "SELECT * FROM department"
+                );
+
+            rs = st.executeQuery();
+
+            List<Department> list = new ArrayList<>();
+
+            while(rs.next()){
+                Department department = new Department();
+                department.setId(rs.getInt("Id"));
+                department.setName(rs.getString("Name"));
+
+                list.add(department);
+            }
+            return list;
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeResultSet(rs);
+            DB.closeStatement(st);
+        }
     }
 
 }
