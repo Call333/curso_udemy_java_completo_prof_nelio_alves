@@ -10,8 +10,13 @@ public class MainDepartmentTest {
         
         System.out.println("\n ---> TEST 1: insert() <--- ");
         Department dep = new Department(null, "Sports and Adventure");
-        departmentDao.insert(dep);
+        // departmentDao.insert(dep);
         System.out.println("Inserted!");
+
+        System.out.println("\n ---> TEST 2: update() <--- ");
+        dep.setId(14);
+        dep.setName("Games");
+        departmentDao.update(dep);
         
     }
 }
